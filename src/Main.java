@@ -10,10 +10,10 @@ public class Main {
     static char replay='y';
     public static void printBoard() {
         int i,j;
-        System.out.println("\n    0   1   2");
+        System.out.println("\n    1   2   3");
         System.out.println("  -------------");
         for (i = 0; i < 3; i++) {
-            System.out.print(i + " |");
+            System.out.print((char)(65+i) + " |");
             for (j = 0; j < 3; j++) {
                 System.out.print(" " + board[i][j] + " |");
             }
@@ -32,6 +32,7 @@ public class Main {
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.print("Enter your preferred symbol (O/X): ");
         user=sc.next().toUpperCase().charAt(0);
+        sc.nextLine();
         System.out.println("-------------------------------");
         if(valid_input()){
             if(user=='O')
@@ -52,22 +53,16 @@ public class Main {
     }
     public static void user_move(){
         int row,col;
+        String pos;
         while(true){
-            System.out.print("\nEnter the row and column corresponding to your move separated by a space: ");
-            if (sc.hasNextInt()) {
-                row = sc.nextInt();
-            } else {
-                System.out.println("Invalid input. Enter integers only.");
-                sc.next();
+            System.out.print("\nEnter the position reference of your cell (eg: A1): ");
+            pos=sc.nextLine().toUpperCase().trim().replaceAll(" ","");
+            if(pos.length()!=2) {
+                System.out.println("Invalid format. Use A1 to C3");
                 continue;
             }
-            if (sc.hasNextInt()) {
-                col = sc.nextInt();
-            } else {
-                System.out.println("Invalid input. Enter integers only.");
-                sc.next();
-                continue;
-            }
+            row=pos.charAt(0)-65;
+            col=pos.charAt(1)-'1';
             if(valid_move(row,col)) {
                 board[row][col]=user;
                 break;
@@ -76,11 +71,12 @@ public class Main {
                 System.out.println("Invalid choice. Position is either occupied or does not exist!");
             }
         }
-        System.out.println("You made your move at: "+row+" "+col);
+        System.out.println("You made your move at: "+pos);
         fm=0;
     }
     public static void comp_move() throws InterruptedException {
         int a,b;
+        String pos;
         Thread.sleep(1000);
         while(true) {
             a = rand.nextInt(3);
@@ -90,8 +86,9 @@ public class Main {
                 break;
             }
         }
+        pos=""+(char)(a+65)+(b+1);
         System.out.println("\nComputer has made its move");
-        System.out.println("Computer placed at: " + a + " " + b);
+        System.out.println("Computer placed at: "+pos);
         fm=1;
     }
     public static void first_move() throws InterruptedException{
