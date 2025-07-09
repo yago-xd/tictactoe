@@ -113,80 +113,81 @@ If you're new to Java and want to understand game loops, input validation, and b
 Welcome to Tic Tac Toe!
 Enter your preferred symbol (O/X): x
 -------------------------------
+Reference of each cell in the board: 
 
-    0   1   2
-  -------------
-0 |   |   |   |
-  -------------
-1 |   |   |   |
-  -------------
-2 |   |   |   |
-  -------------
+    1    2    3
+  ----------------
+A | A1 | A2 | A3 |
+  ----------------
+B | B1 | B2 | B3 |
+  ----------------
+C | C1 | C2 | C3 |
+  ----------------
 
 The first move will be made by: You
 
-Enter the row and column corresponding to your move separated by a space: 1 1
-You made your move at: 1 1
+Enter the position reference of your cell (eg: A1): a1
+You made your move at: A1
 
-    0   1   2
+    1   2   3
   -------------
-0 |   |   |   |
+A | X |   |   |
   -------------
-1 |   | X |   |
+B |   |   |   |
   -------------
-2 |   |   |   |
-  -------------
-
-Computer's turn
-Computer has made its move
-Computer placed at: 1 2
-
-    0   1   2
-  -------------
-0 |   |   |   |
-  -------------
-1 |   | X | O |
-  -------------
-2 |   |   |   |
-  -------------
-
-Your turn
-Enter the row and column corresponding to your move separated by a space: 2 2
-You made your move at: 2 2
-
-    0   1   2
-  -------------
-0 |   |   |   |
-  -------------
-1 |   | X | O |
-  -------------
-2 |   |   | X |
+C |   |   |   |
   -------------
 
 Computer's turn
 Computer has made its move
-Computer placed at: 1 0
+Computer placed at: A2
 
-    0   1   2
+    1   2   3
   -------------
-0 |   |   |   |
+A | X | O |   |
   -------------
-1 | O | X | O |
+B |   |   |   |
   -------------
-2 |   |   | X |
+C |   |   |   |
   -------------
 
 Your turn
-Enter the row and column corresponding to your move separated by a space: 0 0
-You made your move at: 0 0
+Enter the position reference of your cell (eg: A1): b2
+You made your move at: B2
 
-    0   1   2
+    1   2   3
   -------------
-0 | X |   |   |
+A | X | O |   |
   -------------
-1 | O | X | O |
+B |   | X |   |
   -------------
-2 |   |   | X |
+C |   |   |   |
+  -------------
+
+Computer's turn
+Computer has made its move
+Computer placed at: B3
+
+    1   2   3
+  -------------
+A | X | O |   |
+  -------------
+B |   | X | O |
+  -------------
+C |   |   |   |
+  -------------
+
+Your turn
+Enter the position reference of your cell (eg: A1): 3c
+You made your move at: C3
+
+    1   2   3
+  -------------
+A | X | O |   |
+  -------------
+B |   | X | O |
+  -------------
+C |   |   | X |
   -------------
 You win!
 

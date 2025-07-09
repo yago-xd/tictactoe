@@ -5,7 +5,7 @@ public class Main {
     static Random rand = new Random();
     static char[][] board={ {' ',' ',' '}, {' ',' ',' '}, {' ',' ',' '} };
     static char user,comp;
-    static int fm=0;
+    static int fm=0,round=0;
     static int g=0,w=0,l=0,d=0;
     static char replay='y';
     public static void printBoard() {
@@ -23,7 +23,7 @@ public class Main {
     public static void initial_board() {
         int i,j,b;
         char a='A';
-        System.out.println("\n    1   2   3");
+        System.out.println("\n    1    2    3");
         System.out.println("  ----------------");
         for (i = 0; i < 3; i++) {
             b=1;
@@ -47,25 +47,16 @@ public class Main {
     public static void setUser(){
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.print("Enter your preferred symbol (O/X): ");
-        user=sc.next().toUpperCase().charAt(0);
-        sc.nextLine();
+        user=sc.nextLine().toUpperCase().charAt(0);
         System.out.println("-------------------------------");
-        if(valid_input()){
-            if(user=='O')
-                comp='X';
-            else
-                comp='O';
+        while(!valid_input()) {
+            System.out.print("\nEnter a valid symbol!! (O/X): ");
+            user=sc.nextLine().toUpperCase().charAt(0);
         }
-        else{
-            while(!valid_input()) {
-                System.out.print("\nEnter a valid symbol!! (O/X): ");
-                user=sc.next().toUpperCase().charAt(0);
-            }
-        }
-    }
-    public static String first(){
-        String[] f={"user","computer"};
-        return f[rand.nextInt(2)];
+        if(user=='O')
+            comp='X';
+        else
+            comp='O';
     }
     public static void user_move(){
         int row,col;
@@ -120,16 +111,18 @@ public class Main {
         fm=1;
     }
     public static void first_move() throws InterruptedException{
-        printBoard();
+        round++;
+        initial_board();
+        System.out.println("\nRound "+round);
         System.out.print("\nThe first move will be made by: ");
-        String res=first();
+        int first= rand.nextInt(2);
         Thread.sleep(2000);
-        if(res.equals("user")){
+        if(first==0){
             System.out.println("You");
             user_move();
             fm=1;
         }
-        else if(res.equals("computer")){
+        else{
             System.out.println("Computer");
             comp_move();
             fm=0;
@@ -225,7 +218,11 @@ public class Main {
             if(!replay_inp.isEmpty())
                 replay=replay_inp.charAt(0);
             else
-                replay='n';
+                replay = 'n';
+            if (replay != 'y' && replay != 'n') {
+                System.out.println("Invalid input! Assuming no.");
+                replay = 'n';
+            }
         }
         System.out.println("Thank you for playing!");
     }
