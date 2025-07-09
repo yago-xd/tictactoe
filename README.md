@@ -64,6 +64,9 @@ Download the jar file from the releases section
 ```bash
 java -jar tictactoe.jar
 ```
+Try it on [Replit](https://replit.com/@yago-xd/tictactoe)
+
+
 ---
 
 ## 🕹️ How to Play
