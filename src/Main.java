@@ -20,6 +20,22 @@ public class Main {
             System.out.println("\n  -------------");
         }
     }
+    public static void initial_board() {
+        int i,j,b;
+        char a='A';
+        System.out.println("\n    1   2   3");
+        System.out.println("  ----------------");
+        for (i = 0; i < 3; i++) {
+            b=1;
+            System.out.print((char)(65+i) + " |");
+            for (j = 0; j < 3; j++) {
+                System.out.print(" " + a+b + " |");
+                b++;
+            }
+            a++;
+            System.out.println("\n  ----------------");
+        }
+    }
     public static boolean valid_move(int m, int n){
         if((m>=0 && m<3)&&(n>=0 && n<3))
             return board[m][n] == ' ';
