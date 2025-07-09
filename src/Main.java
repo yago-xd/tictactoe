@@ -53,16 +53,28 @@ public class Main {
     }
     public static void user_move(){
         int row,col;
-        String pos;
+        String pos,apos;
         while(true){
             System.out.print("\nEnter the position reference of your cell (eg: A1): ");
             pos=sc.nextLine().toUpperCase().trim().replaceAll(" ","");
             if(pos.length()!=2) {
-                System.out.println("Invalid format. Use A1 to C3");
+                System.out.println("Invalid format. Use something like 1A or A1");
                 continue;
             }
-            row=pos.charAt(0)-65;
-            col=pos.charAt(1)-'1';
+            if(Character.isLetter(pos.charAt(0))&&Character.isDigit(pos.charAt(1))){
+                row=pos.charAt(0)-65;
+                col=pos.charAt(1)-'1';
+                apos=pos;
+            }
+            else if(Character.isDigit(pos.charAt(0))&&Character.isLetter(pos.charAt(1))){
+                row=pos.charAt(1)-65;
+                col=pos.charAt(0)-'1';
+                apos=""+pos.charAt(1)+pos.charAt(0);
+            }
+            else{
+                System.out.println("Invalid format!");
+                continue;
+            }
             if(valid_move(row,col)) {
                 board[row][col]=user;
                 break;
@@ -71,7 +83,7 @@ public class Main {
                 System.out.println("Invalid choice. Position is either occupied or does not exist!");
             }
         }
-        System.out.println("You made your move at: "+pos);
+        System.out.println("You made your move at: "+apos);
         fm=0;
     }
     public static void comp_move() throws InterruptedException {
@@ -193,7 +205,11 @@ public class Main {
             start_game();
             System.out.println("\n------------------------------");
             System.out.print("\nDo you wish to play again? (Y/N): ");
-            replay = sc.next().trim().toLowerCase().charAt(0);
+            String replay_inp=sc.nextLine().trim().toLowerCase();
+            if(!replay_inp.isEmpty())
+                replay=replay_inp.charAt(0);
+            else
+                replay='n';
         }
         System.out.println("Thank you for playing!");
     }
