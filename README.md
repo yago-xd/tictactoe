@@ -1,6 +1,6 @@
 # 🎮 Tic Tac Toe
 
-A full-featured, interactive, and replayable Tic Tac Toe game built in Java, where you challenge a computer opponent in a classic battle of Xs and Os!
+A full-featured, interactive, and replayable Tic Tac Toe game built in Java, where you challenge a computer opponent in a classic battle of tic-tac-toe.
 
 ![Java](https://img.shields.io/badge/Language-Java-blue.svg)
 ![Beginner Project](https://img.shields.io/badge/Level-Beginner-brightgreen)
