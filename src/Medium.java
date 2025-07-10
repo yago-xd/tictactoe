@@ -47,7 +47,7 @@ public class Medium {
     public static void setUser(){
         System.out.print("\nEnter your preferred symbol (O/X): ");
         user=sc.nextLine().toUpperCase().charAt(0);
-        System.out.println("-------------------------------");
+        System.out.println("-----------------------------------");
         while(!valid_input()) {
             System.out.print("\nEnter a valid symbol!! (O/X): ");
             user=sc.nextLine().toUpperCase().charAt(0);
