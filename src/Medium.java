@@ -45,8 +45,7 @@ public class Medium {
         return (user == 'O'|| user=='X');
     }
     public static void setUser(){
-        System.out.println("Welcome to Tic Tac Toe!");
-        System.out.print("Enter your preferred symbol (O/X): ");
+        System.out.print("\nEnter your preferred symbol (O/X): ");
         user=sc.nextLine().toUpperCase().charAt(0);
         System.out.println("-------------------------------");
         while(!valid_input()) {
@@ -93,7 +92,7 @@ public class Medium {
         System.out.println("You made your move at: "+apos);
         fm=0;
     }
-    public static void comp_move() throws InterruptedException {
+    public static void comp_random_move() throws InterruptedException {
         int a,b;
         String pos;
         Thread.sleep(1000);
@@ -110,6 +109,40 @@ public class Medium {
         System.out.println("Computer placed at: "+pos);
         fm=1;
     }
+    public static void comp_ai_move() throws InterruptedException {
+        Thread.sleep(1000);
+        String pos;
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                pos=""+(char)(i+65)+(j+1);
+                if(board[i][j]==' ') {
+                    board[i][j] = comp;
+                    if(checkWin(comp)) {
+                        System.out.println("\nComputer has made its move");
+                        System.out.println("Computer placed at: "+pos);
+                        return;
+                    }
+                    board[i][j]=' ';
+                }
+            }
+        }
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
+                pos=""+(char)(i+65)+(j+1);
+                if(board[i][j]==' '){
+                    board[i][j]=user;
+                    if(checkWin(user)) {
+                        System.out.println("\nComputer has made its move");
+                        System.out.println("Computer placed at: "+pos);
+                        board[i][j] = comp;
+                        return;
+                    }
+                    board[i][j]=' ';
+                }
+            }
+        }
+        comp_random_move();
+    }
     public static void first_move() throws InterruptedException{
         round++;
         initial_board();
@@ -124,7 +157,7 @@ public class Medium {
         }
         else if(first==1){
             System.out.println("Computer");
-            comp_move();
+            comp_ai_move();
             fm=0;
         }
         printBoard();
@@ -182,7 +215,7 @@ public class Medium {
             }
             else {
                 System.out.print("\nComputer's turn");
-                comp_move();
+                comp_ai_move();
                 printBoard();
                 if (checkWin(comp)) {
                     System.out.println("Computer wins!");
