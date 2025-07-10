@@ -115,14 +115,14 @@ public class Main {
         initial_board();
         System.out.println("\nRound "+round);
         System.out.print("\nThe first move will be made by: ");
-        int first= rand.nextInt(2);
+        int first= rand.nextInt(1,3)-1;
         Thread.sleep(2000);
         if(first==0){
             System.out.println("You");
             user_move();
             fm=1;
         }
-        else{
+        else if(first==1){
             System.out.println("Computer");
             comp_move();
             fm=0;
@@ -143,14 +143,13 @@ public class Main {
         return false;
     }
     public static boolean isDraw(){
-        int d=0;
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
-                if(board[i][j]!=' ')
-                    d++;
+                if(board[i][j]==' ')
+                    return false;
             }
         }
-        return (d == 9);
+        return true;
     }
     public static void reset() {
         for (int i = 0; i < 3; i++) {
